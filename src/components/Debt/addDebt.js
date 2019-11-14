@@ -54,7 +54,7 @@ class AddDebt extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createDebt: (debt) => dispatch(createDebt(debt))
+        createDebt: (debt) => createDebt(debt, dispatch)
     }
 }
 

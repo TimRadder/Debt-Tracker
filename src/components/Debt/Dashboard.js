@@ -8,7 +8,6 @@ class Dashboard extends Component {
 
     componentDidMount(){
         this.props.getDebts();
-        //console.log("Component Did Mount Props", this.props);
     }
 
     render() {
@@ -48,10 +47,9 @@ const mapStateToProps = (state) => ({
     loading: state.debt.loading,
     error: state.debt.error
 })
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDebts: () => dispatch(getDebts())
+        getDebts: () => getDebts(dispatch)
     }
 }
 
