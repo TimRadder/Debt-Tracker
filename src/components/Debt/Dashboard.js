@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getDebts } from '../../store/actions/debt/debtActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Debt from './debt'
 
@@ -14,17 +15,30 @@ class Dashboard extends Component {
         const {debts, loading, error} = this.props;
         if(error){
             return(
-                <div>
-                    <p>
-                        An Error has Occurred... Ohhh no!
-                    </p>
-                </div>
+                <div className="container error">
+                    <div className="row">
+                        <div className="col s4 offset-s4">
+                            <div className="center-align">
+                                <FontAwesomeIcon icon={['fas', "exclamation-circle"]} style={{color: '#E24769'}} size="8x"/> <br />
+                                <h5>Error: {error}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
             )
         }
 
         if(loading) {
             return(
-                <p>Please hold while we load...</p>
+                <div className="container loading">
+                    <div className="row">
+                        <div className="col s4 offset-s4">
+                            <div className="center-align">
+                                <FontAwesomeIcon icon={['fas', "spinner"]} style={{color: '#43A1F3'}} size="8x" pulse /> <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>                
             )
         }
         return (

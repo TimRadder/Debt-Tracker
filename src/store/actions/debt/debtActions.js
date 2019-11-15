@@ -13,6 +13,9 @@ export const getDebts = (dispatch) => {
             let loading = true;
             //console.log("Response: ", res);
             debts = res.data;
+            if(res.code !== 200){
+                error = res.message;
+            }
             if(debts) {loading = false;}
             dispatch({type: 'FETCH_DEBTS', debts: debts, error: error, loading: loading});
         });  
