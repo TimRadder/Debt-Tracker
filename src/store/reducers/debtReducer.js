@@ -1,14 +1,16 @@
 const initState = {
     debts: [],
     loading: true,
-    error: null
+    error: void 0
 }
 
 const debtReducer = (state = initState, action) => {
     switch(action.type){
         case 'CREATE_DEBT':
-            console.log("Created the Project!", action.debt);
-            return state;
+            return {
+                res: action.res,
+                error: action.error
+            }
         case 'FETCH_DEBTS':
             return {
                 debts: action.debts,
