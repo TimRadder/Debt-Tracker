@@ -15,7 +15,7 @@ class Dashboard extends Component {
         const {debts, loading, error} = this.props;
         if(error){
             return(
-                <div className="container error">
+                <div className="container center-screen">
                     <div className="row">
                         <div className="col s4 offset-s4">
                             <div className="center-align">
@@ -30,7 +30,7 @@ class Dashboard extends Component {
 
         if(loading) {
             return(
-                <div className="container loading">
+                <div className="container center-screen">
                     <div className="row">
                         <div className="col s4 offset-s4">
                             <div className="center-align">
@@ -41,15 +41,31 @@ class Dashboard extends Component {
                 </div>                
             )
         }
+
+        if(debts.length > 0){
+            return (
+                <div className="container">
+                    <h4 className='grey-text text-darken-3'>Dashboard</h4>
+                    <div className='row'>
+                    { debts && debts.map(debt => {
+                        return (
+                            <Debt debt={debt} key={debt.id}></Debt>
+                        )
+                    })}
+                    </div>
+                </div>
+            )
+        }
+
         return (
-            <div className="container">
-                <h4 className='grey-text text-darken-3'>Dashboard</h4>
-                <div className='row'>
-                { debts && debts.map(debt => {
-                    return (
-                        <Debt debt={debt} key={debt.id}></Debt>
-                    )
-                })}
+            <div className="container center-screen">
+                <div className="row">
+                    <div className="col s12 m6 offset-m3">
+                        <div className="center-align">
+                            <FontAwesomeIcon icon={["fad", "window-close"]} style={{color: '#43A1F3'}} size="8x" />
+                            <h5>You currently have no debts to track!</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

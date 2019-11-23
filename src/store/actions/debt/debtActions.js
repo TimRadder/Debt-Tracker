@@ -19,6 +19,21 @@ export const createDebt = (debt, dispatch) => {
     });         
 };
 
+export const getDebt = (debtID, dispatch) => {
+    let error = void 0;
+    let loading = true;
+
+    fetch('http://debtapi.com/debt/' + debtID)
+        .then(res =>res.json())
+        .then(res => {
+            if(res.code !== 200){
+                error = res.message;
+            }
+            loading = false;
+            dispatch({type: 'FETCH_DEBT', debt: res.data.debt, payments: res.data.payments, loading: loading, error: error});
+        });
+}
+
 export const getDebts = (dispatch) => {
     let debts = {};
     let error = void 0;

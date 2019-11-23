@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Debt = ({debt}) => {
+    const toURL = "/debt/" + debt.id;
     return(
         <div className='col s12 m4' >
             <div className="card medium grey lighten-5 z-depth-3">
@@ -10,7 +11,7 @@ const Debt = ({debt}) => {
                     <p>Chart would probably go here</p>
                 </div>
                 <div className="card-action grey lighten-3">
-                    <Link to="/debt" className="blue-text accent-4">View Debt</Link>
+                    <Link to={toURL} className="blue-text accent-4">View Debt</Link>
                     <Link to="/" className="blue-text accent-4">Add Payment</Link>
                 </div>
             </div>

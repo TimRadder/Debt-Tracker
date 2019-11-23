@@ -33,7 +33,14 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 color: #ec407a !important;
 }
 
+.shadow {
+  box-shadow: 3px 2px 5px 5px rgba(55, 89, 123, 0.25);
+}
 
-.loading, .error{
+.activeLink {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.center-screen{
   margin-top: 10%;
 }

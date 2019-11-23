@@ -17,6 +17,12 @@ const debtReducer = (state = initState, action) => {
                 loading: action.loading,
                 error: action.error
             }
+        case 'FETCH_DEBT': 
+            return {
+                debt: action.debt,
+                payments: action.payments,
+                error: action.error
+            }
         default:
             return state;
     }

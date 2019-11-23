@@ -10,10 +10,15 @@ class AddDebt extends Component {
         amount: 0,
         interest: 0,
         basePayment: 0,
-        paymentOccurrence: 'biweekly'
+        paymentOccurrence: 'biweekly',
+        options: [
+            {value: 'weekly', label: 'Weekly'},
+            {value: 'biweekly', label: 'Bi-Weekly'},
+            {value: 'monthly', label: 'Monthly'},
+        ]
     };
 
-    handleChange = (e) => {
+    handleChange = (e) => { 
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -21,17 +26,12 @@ class AddDebt extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state);
-        this.props.createDebt(this.state);
+        console.log(this.state);
+        //this.props.createDebt(this.state.debt);
     }
 
     render() {
         const {res, error} = this.props;
-        const paymentOccurenceOptions = [
-            {value: "weekly", label: "Weekly"},
-            {value: "biweekly", label: "Bi-Weekly"},
-            {value: "monthly", label: "Monthly"}
-        ];
         
         if(res){
             if(res.code === 200){
@@ -57,32 +57,37 @@ class AddDebt extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="container shadow">
                 <form className='white' onSubmit={this.handleSubmit}>
                     <h5 className='grey-text text-darken-3'>Add Debt</h5>
                     <div className='input-field col s12'>
+                        <FontAwesomeIcon icon={['fad', 'file-signature']} className='prefix' style={{color: '#43A1F3'}}/>
                         <label htmlFor="name">Name</label>
                         <input type="text" id="name" onChange={this.handleChange} />
                     </div>
                     <div className='input-field col s12'>
+                        <FontAwesomeIcon icon={['fad', 'sack-dollar']} className='prefix' style={{color: '#43A1F3'}}/>
                         <label htmlFor="amount">Amount</label>
                         <input type="number" id="amount" onChange={this.handleChange} step="any" min="0" />
                     </div>
                     <div className='input-field col s12'>
-                        <label htmlFor="interest">Interest (%)</label>
+                        <FontAwesomeIcon icon={['fas', 'percentage']} className='prefix' style={{color: '#43A1F3'}}/>
+                        <label htmlFor="interest">Interest</label>
                         <input type="number" id="interest" onChange={this.handleChange} step="any" min="0" />
                     </div>
                     <div className='input-field col s12'>
+                        <FontAwesomeIcon icon={['fad', 'piggy-bank']} className='prefix' style={{color: '#43A1F3'}}/>
                         <label htmlFor="basePayment">Base Payment</label>
                         <input type="number" id="basePayment" onChange={this.handleChange} step="any" min="0" />
                     </div>
-                    <div className="input-field col s12">
-                        <select value="1" onChange={this.handleChange}>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        </select>
+                    <div className="input-field col s12">                    
+                        <FontAwesomeIcon icon={['fad', 'analytics']} className='prefix' style={{color: '#43A1F3'}}/>                        
                         <label>Materialize Select</label>
+                        <select value={this.state.paymentOccurrence} onChange={this.handleChange} name="paymentOccurrence">
+                            {this.state.options.map(option => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className='input-field col s12'>
                         <button className="btn pink lighten-1 z-depth-2">Submit</button>

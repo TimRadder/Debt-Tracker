@@ -21,7 +21,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container shadow">
                 <form className='white' onSubmit={this.handleSubmit}>
                     <h5 className='grey-text text-darken-3'>Register</h5>
                     <div className='input-field'>
